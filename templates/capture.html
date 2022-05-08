@@ -1,0 +1,94 @@
+{% extends 'homeheader.html'%}
+{% block content %}
+
+<section class="w3l-contacts-12" id="contact" >
+    <div class="contact-top pt-5">
+    
+         <center><h3>Image Capture</h3></center>
+         <div class="container py-md-3">
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+            
+            <div class="row cont-main-top">
+                <div class="contacts12-main col-lg-8 mt-lg-0 mt-5">
+                                
+                    <!--form action="/imcaptured" method="post" class="main-input"-->
+                        
+                        <video id="player" controls autoplay></video>
+                        <button id="capture" class="btn btn-theme2">Capture</button>
+                        <canvas id="canvas" width="320" height="240"></canvas>
+                        <script defer>
+                            const player = document.getElementById('player');
+                            const canvas = document.getElementById('canvas');
+                            var dataURL = canvas.toDataURL();
+                            
+                          
+                            const context = canvas.getContext('2d');
+                            const captureButton = document.getElementById('capture');
+                            
+                            const constraints = {
+                                video: true,
+                            };
+
+                            
+                            
+                            captureButton.addEventListener('click', () => {
+                                context.drawImage(player, 0, 0, canvas.width, canvas.height);
+                                dataURL = canvas.toDataURL();
+                        
+                                player.srcObject.getVideoTracks().forEach(track=> track.stop());
+                                
+                                fetch('http://localhost:5000/imcaptured', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        img: dataURL
+                                    })
+                                });
+                
+                                //$.ajax({
+                                //    type: "POST", 
+                               //     url: "/imcaptured",
+                                 //   data: { img: dataURL }      
+                                //}).done(function(msg){ 
+                                  //  alert("done"); 
+                            
+                           //     });
+                                
+                            });
+                            
+                            navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+                                // Attach the video stream to the video element and autoplay.
+                                player.srcObject = stream;
+                            });
+
+                            
+
+                                        
+
+                
+                        
+                        </script>
+
+                        <form action="/question2" method="POST" class="main-input">
+                            <div >
+                                <button type="submit" class="btn btn-theme2">Submit</button>
+                            </div>
+                        </form>
+
+                   
+                 
+                </div>
+       
+</section>
+
+{% endblock %}

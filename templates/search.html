@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+<section>
+  <div class="container">
+  
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/search/">Home</a>
+  <a href="/search/album/all">Album</a>
+  <a href="/search/track/all">Track</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+    {% if not name or not search_type %}
+
+      <div class="container">
+
+        <div class='row'>
+          <h1>Search</h1>
+          <p>
+            Get Spotify catalog information about artists, albums,
+            tracks or playlists that match a keyword string.
+          </p>
+          <hr class="half-rule"/>
+        </div>
+
+        <div class='row'>
+          <form action="{{ url_for('search') }}" method='GET'>
+            <div class="row">
+
+                  <div class='col-sm-6'>
+                    <label>Make a search:</label>
+                    <div class="col-lg-10" style='padding-left: 0px;'>
+                      <div class="input-group">
+                        <span class="input-group-btn">
+                          <input type="text" class="form-control" name='name' placeholder="Search for... Love?">
+                          <button class="btn btn-default" type="submit">Go!</button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  </div>
+
+                  <div class='col-sm-4'>
+                    <label>Choose search type:</label>
+                    <select class='form-group' name='search_type'>
+                      <!--<option value='artist'>Artist</option>-->
+                      <option value='album'>Album</option>
+                      <!--<option value='playlist'>Playlist</option>-->
+                      <option value='track'>Track</option>
+                    </select>
+                  </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    {% else %}
+
+        <h3>Searching for {{ search_type }} with the name of:
+          <em>{{ name }}</em>
+        </h3>
+
+        <hr class="half-rule"/> 
+
+        <div class="container">
+
+          {% if search_type == "artist" %}
+            {% include 'partials/search_artist.html' %}
+
+          {% elif search_type == "album" %}
+            {% include 'partials/search_album.html' %}
+
+          {% elif search_type == "playlist" %}
+            {% include 'partials/search_play.html' %}
+
+          {% elif search_type == "track" %}
+            {% include 'partials/search_track.html' %}
+
+          {% endif %}
+        </div>
+    {% endif %}
+  </div>
+  
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+  
+</section>
+
+{% endblock %}

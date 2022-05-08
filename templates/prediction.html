@@ -1,0 +1,68 @@
+{% extends 'homeheader.html'%}
+{% block content %}
+
+<section class="w3l-contacts-12" id="contact">
+    <div class="contact-top pt-5">
+       
+        <div class="container py-md-3">
+            
+            <div class="row cont-main-top">
+                <div class="contacts12-main col-lg-8 mt-lg-0 mt-5">
+                                
+                    <form action="/framehtml" method="post" class="main-input">
+                        <!-- <div class="top-inputs d-grid"> -->
+                
+                        
+                            <center><label>Detect Emotions:</label></center>
+                            <div >
+                                <button type="submit" class="btn btn-theme2"> Detect Emotions & Recommend Songs</button>
+                            </div>
+                            <!-- <center><input type="text" placeholder="Enter Your URL Here" name="file1" id="w3lName" required=""></center> -->
+                         <!-- </div> -->
+                        <!-- <textarea placeholder="Message" name="w3lMessage" id="w3lMessage" required=""></textarea> -->
+                        <br>
+                        <br>
+                       
+
+                       
+                    </form>
+                    <hr>
+                    <form action="/question" method="post" class="main-input">
+                        <!-- <div class="top-inputs d-grid"> -->
+                
+                        
+                            <center><label>Questionnaire:</label></center>
+                            <div >
+                                <button type="submit" class="btn btn-theme2"> Questionnaire</button>
+                            </div>
+                            <!-- <center><input type="text" placeholder="Enter Your URL Here" name="file1" id="w3lName" required=""></center> -->
+                         <!-- </div> -->
+                        <!-- <textarea placeholder="Message" name="w3lMessage" id="w3lMessage" required=""></textarea> -->
+                        <br>
+                        <br>
+                       
+
+                       
+                    </form>
+                    <!-- <hr>
+                    <form action="/video" method="post" class="main-input">
+                        <!-- <div class="top-inputs d-grid"> -->
+<!--                 
+                        
+                            <center><label>Detect:</label></center>
+                            <div >
+                           <button type="submit" class="btn btn-theme2"> Detect</button>
+                            </div>
+                            <!-- <center><input type="text" placeholder="Enter Your URL Here" name="file1" id="w3lName" required=""></center> -->
+                         <!-- </div> -->
+                        <!-- <textarea placeholder="Message" name="w3lMessage" id="w3lMessage" required=""></textarea> -->
+                        <!-- <br>
+                        <br> --> 
+                       
+
+                       
+                    <!-- </form> --> 
+                </div>
+</section>
+
+{% endblock %}

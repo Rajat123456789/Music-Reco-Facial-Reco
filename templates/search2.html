@@ -1,0 +1,40 @@
+{% extends 'homeheader.html'%}
+{% block content %}
+
+<section class="w3l-contacts-12" id="contact" >
+    <div class="contact-top pt-5">
+            
+           
+        
+            <center><h3>Image Emotion</h3></center>
+            
+            <center><img src="static/uploadeddetected/uplimg.jpg"></center>
+            
+            
+                    
+
+                    <hr class="half-rule"/> 
+
+                    <div class="container">
+                        <h3>Searching for {{ search_type }} with the name of:
+                            <em>{{ name }}</em>
+                        </h3>
+
+                        {% if search_type == "track" %}
+                        {% include 'partials/search_track.html' %}
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    console.log(k);
+    console.log("Hello dcndsjbchjdsbvdsa")
+</script>
+
+  {% endblock %}

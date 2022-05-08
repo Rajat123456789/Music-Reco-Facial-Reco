@@ -1,0 +1,31 @@
+{% extends 'homeheader.html'%}
+{% block content %}
+
+<section  >
+    <div style="padding:100px" class="top-inputs d-grid">
+        <center><h3>Listen songs directly:</h3></center>
+        <div class="container py-md-3">
+            
+            <div class="row cont-main-top">
+                <div class="contacts12-main col-lg-8 mt-lg-0 mt-5">
+                                
+                    <form action="/songResults" method="post" class="main-input">
+                        <div class="top-inputs d-grid">
+                            <label>Enter the song you want to listen:</label>
+                            <input type="text" placeholder="Song" name="songName" id="w3lName" required="">
+                          </div>
+                        <!-- <textarea placeholder="Message" name="w3lMessage" id="w3lMessage" required=""></textarea> -->
+                          <div class="top-inputs d-grid"> 
+
+                            <div class="text-center" style="margin-top: 50px;">
+                                <button type="submit" class="btn btn-theme2" >Listen Now</button>
+                            </div>
+
+                        
+                        </div>
+
+                    </form>
+                </div>
+</section>
+
+{% endblock %}

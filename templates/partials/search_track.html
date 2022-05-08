@@ -1,0 +1,44 @@
+
+      <table class="table search_table">
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Play Song</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <!-- <th>Popularity [0, 100]</th> -->
+          </tr>
+        </thead>
+
+        {% for track in results %}
+        <tr>
+
+          <td>
+            <a href="{{ track.external_urls.spotify }}"> {{ track.name }} </a>
+          </td>
+          <td>
+            <iframe src="https://open.spotify.com/embed/track/{{track.id}}" width="250" height="80" frameborder="0" key="{{track.id}}" allowtransparency="true"  allow="encrypted-media"></iframe>
+            
+            
+          
+           
+          </td>
+             
+
+          <td>
+            {% for artist in track.artists %}
+              <a href="https://open.spotify.com/artist/{{artist.id}}"> {{ artist.name }} </a>
+            {% endfor %}
+          </td>
+
+          <td class="number">
+            <a href="{{ track.external_urls.spotify }}"> {{ track.album.name }} </a>
+          </td>
+
+          <!-- <td class="number">{{ track.popularity }}</td> -->
+
+        </tr>
+        {% endfor %}
+
+      </table>
